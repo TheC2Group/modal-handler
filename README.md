@@ -1,0 +1,1 @@
+Use this to control the modal windows on your site.

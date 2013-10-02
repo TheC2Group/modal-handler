@@ -1,0 +1,35 @@
+.Overlay {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+    opacity: 0;
+    -webkit-transition: height .5s ease, opacity .5s ease;
+    transition: height .5s ease, opacity .5s ease;
+}
+    .Overlay.active {
+        height: 100%;
+        opacity: .5;
+    }
+
+.CustomModal {
+    display: none;
+    position: absolute;
+    left: 50%;
+    width: 300px;
+    padding: 50px;
+    margin: 0 0 0 -200px;
+    background: #fff;
+}
+    .CustomModal.active {
+        display: block;
+    }
+    .CustomModal.Black {
+        width: 500px;
+        margin-left: -300px;
+        background: #000;
+        color: #fff;
+    }
