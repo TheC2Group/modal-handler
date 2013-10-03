@@ -11,19 +11,19 @@
         createOverlay = function () {
             $overlay = $(this.opts.overlayHTML);
             $('body').append($overlay);
-            this.$overlays.push($overlay);
+            this.$overlays = this.$overlays.add($overlay);
         },
         openOverlay = function (num) {
             if (num === this.$overlays.length) {
                 createOverlay.call(this);
             }
             if (num < this.$overlays.length) {
-                this.$overlays[num].css('zIndex', num * 2 + this.opts.zIndexStart)
+                this.$overlays.eq(num).css('zIndex', num * 2 + this.opts.zIndexStart)
                     .addClass(this.opts.overlayActiveClass);
             }
         },
         closeOverlay = function (num, recursive) {
-            this.$overlays[num].removeClass(this.opts.overlayActiveClass);
+            this.$overlays.eq(num).removeClass(this.opts.overlayActiveClass);
             if (recursive && num > 0) {
                 closeOverlay.call(this, num - 1, recursive);
             }
@@ -31,7 +31,7 @@
         closeModal = function (el) {
             var $modal = $(el);
             $modal.removeClass(this.opts.modalActiveClass);
-            this.$overlay.removeClass(this.opts.overlayActiveClass);
+            this.$overlays.removeClass(this.opts.overlayActiveClass);
         },
         verticallyCenter = function ($modal) {
             var wHeight = $(window).height(),
@@ -39,7 +39,7 @@
             $modal.css('top', Math.max((wHeight - mHeight) / 2, 0));
         },
         init = function () {
-            this.$overlays = [];
+            this.$overlays = $();
             for (var x = 0; x < this.opts.depth; x += 1) {
                 createOverlay.call(this);
             }
