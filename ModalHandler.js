@@ -49,8 +49,8 @@
         this.opts = $.extend({}, defaults, options);
         init.call(this);
     };
-    namespace.ModalHandler.prototype.open = function (el) {
-        var $modal = $(el);
+    namespace.ModalHandler.prototype.open = function (modal) {
+        var $modal = $(modal);
         if (!$modal.length || $modal.hasClass(this.opts.modalActiveClass)) return;
         openOverlay.call(this, this.count);
         $modal.css('zIndex', this.count * 2 + 1 + this.opts.zIndexStart)
@@ -58,8 +58,8 @@
         this.opts.verticallyCenterModal && verticallyCenter.call(this, $modal);
         this.count += 1;
     };
-    namespace.ModalHandler.prototype.close = function (el) {
-        var $modal = $(el);
+    namespace.ModalHandler.prototype.close = function (modal) {
+        var $modal = $(modal);
         if (!$modal.length) return;
         this.count -= 1;
         $modal.removeClass(this.opts.modalActiveClass);
