@@ -1,6 +1,8 @@
 # ModalHandler
 
-This simple javascript contructor gives you an object that you can use to open and close modal windows. This is bare bones modal handling as you only use the prototype methods to open or close modals. Opening a modal will add a specific class to the modal you want and to the overlay div. Closing a model will remove the class from the modal and overlay. Modal Handler also aids in having multiple modal windows open at a time as it increase the z-index for every new window.
+This simple javascript constructor gives you an object that you can use to open and close modal windows. Opening a modal will add a specific class to the modal that you are opening and to the overlay that is triggered. Closing a model will remove the classes from the modal and overlay. Modal Handler also aids in having multiple modal windows open at a time as it will increase the z-index for every new window.
+
+The benefit of using classes to open and close a modal rather than directly changing the style attribute is to more easily utilize CSS and CSS transitions. Responsive sites will also benifit from using classes rather than applying inline style. However, `z-index` and `top` are applied inline directly on the elements.
 
 ## Set Up:
 
