@@ -1,4 +1,5 @@
 (function (namespace, $) {
+    "use strict";
     var defaults = {
             overlayHTML: '<div class="Overlay"></div>',
             overlayActiveClass: 'active',
@@ -9,7 +10,7 @@
             depth: 1
         },
         createOverlay = function () {
-            $overlay = $(this.opts.overlayHTML);
+            var $overlay = $(this.opts.overlayHTML);
             $('body').append($overlay);
             this.$overlays = this.$overlays.add($overlay);
         },
@@ -70,4 +71,4 @@
         closeOverlay.call(this, this.count - 1, true);
         this.count = 0;
     };
-}(window, jQuery));
+}(this, jQuery));
