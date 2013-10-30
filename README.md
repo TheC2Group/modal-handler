@@ -54,15 +54,17 @@ This will close all open modals using the `modalSelector` property on the option
 
 ## Custom javascript code example
 
-    var modals = new ModalHandler({
-        modalSelector: '.CustomModal',
-        depth: 2
-    });
+```javascript
+var modals = new ModalHandler({
+    modalSelector: '.CustomModal',
+    depth: 2
+});
 
-    $(document).on('click', 'a[href^="#Modal-"]', function (e) {
-        e.preventDefault();
-        modals.open($(this).attr('href'));
-    })
-    .on('click', 'span.CloseModal', function () {
-        modals.close($(this).parents(modals.opts.modalSelector));
-    });
+$(document).on('click', 'a[href^="#Modal-"]', function (e) {
+    e.preventDefault();
+    modals.open($(this).attr('href'));
+})
+.on('click', 'span.CloseModal', function () {
+    modals.close($(this).parents(modals.opts.modalSelector));
+});
+```
