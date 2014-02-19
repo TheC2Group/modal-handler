@@ -1,4 +1,4 @@
-(function (namespace, $) {
+(function (exports, $) {
     "use strict";
     var defaults = {
             overlayHTML: '<div class="Overlay"></div>',
@@ -34,10 +34,12 @@
             $modal.removeClass(this.opts.modalActiveClass);
             this.$overlays.removeClass(this.opts.overlayActiveClass);
         },
-        verticallyCenter = function ($modal) {
-            var wHeight = $(window).height(),
-                mHeight = $modal.outerHeight();
-            $modal.css('top', Math.max((wHeight - mHeight) / 2, 0));
+        verticallyCenter = function (modal) {
+            var $modal = $(modal),
+                wHeight = $(window).height(),
+                mHeight = $modal.outerHeight(),
+                scrollTop = $(window).scrollTop();
+            $modal.css('top', Math.max((wHeight - mHeight) / 2, 0) + scrollTop);
         },
         init = function () {
             this.$overlays = $();
@@ -46,11 +48,11 @@
             }
             this.count = 0;
         };
-    namespace.ModalHandler = function (options) {
+    exports.ModalHandler = function (options) {
         this.opts = $.extend({}, defaults, options);
         init.call(this);
     };
-    namespace.ModalHandler.prototype.open = function (modal) {
+    exports.ModalHandler.prototype.open = function (modal) {
         var $modal = $(modal);
         if (!$modal.length || $modal.hasClass(this.opts.modalActiveClass)) return;
         openOverlay.call(this, this.count);
@@ -59,16 +61,17 @@
         this.opts.verticallyCenterModal && verticallyCenter.call(this, $modal);
         this.count += 1;
     };
-    namespace.ModalHandler.prototype.close = function (modal) {
+    exports.ModalHandler.prototype.close = function (modal) {
         var $modal = $(modal);
         if (!$modal.length) return;
         this.count -= 1;
         $modal.removeClass(this.opts.modalActiveClass);
         closeOverlay.call(this, this.count, false);
     };
-    namespace.ModalHandler.prototype.closeAll = function () {
+    exports.ModalHandler.prototype.closeAll = function () {
         $(this.opts.modalSelector).removeClass(this.opts.modalActiveClass);
         closeOverlay.call(this, this.count - 1, true);
         this.count = 0;
     };
+    exports.ModalHandler.prototype.verticallyCenter = verticallyCenter;
 }(this, jQuery));
