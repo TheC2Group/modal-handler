@@ -1,4 +1,8 @@
-(function (exports, $) {
+/* Modal Handler
+ * version 1.0
+ * https://github.com/cuth/modal-handler
+ */
+;(function (exports, $) {
     "use strict";
     var defaults = {
             overlayHTML: '<div class="Overlay"></div>',
