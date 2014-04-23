@@ -1,9 +1,9 @@
 /* Modal Handler
- * version 1.0
+ * version 1.0.1
  * https://github.com/cuth/modal-handler
  */
 ;(function (exports, $) {
-    "use strict";
+    'use strict';
     var defaults = {
             overlayHTML: '<div class="Overlay"></div>',
             overlayActiveClass: 'active',
@@ -33,11 +33,6 @@
                 closeOverlay.call(this, num - 1, recursive);
             }
         },
-        closeModal = function (el) {
-            var $modal = $(el);
-            $modal.removeClass(this.opts.modalActiveClass);
-            this.$overlays.removeClass(this.opts.overlayActiveClass);
-        },
         verticallyCenter = function (modal) {
             var $modal = $(modal),
                 wHeight = $(window).height(),
@@ -62,7 +57,9 @@
         openOverlay.call(this, this.count);
         $modal.css('zIndex', this.count * 2 + 1 + this.opts.zIndexStart)
             .addClass(this.opts.modalActiveClass);
-        this.opts.verticallyCenterModal && verticallyCenter.call(this, $modal);
+        if (this.opts.verticallyCenterModal) {
+            verticallyCenter.call(this, $modal);
+        }
         this.count += 1;
     };
     exports.ModalHandler.prototype.close = function (modal) {
