@@ -3,5 +3,25 @@
     "task": "update readme",
     "checked": false,
     "canceled": false
+  },
+  {
+    "task": "supress the tab index outside the window",
+    "checked": false,
+    "canceled": false
+  },
+  {
+    "task": "use the esc key to close the modal",
+    "checked": false,
+    "canceled": false
+  },
+  {
+    "task": "refocus the trigger on close",
+    "checked": false,
+    "canceled": false
+  },
+  {
+    "task": "set aria-labelledby to the correct title",
+    "checked": false,
+    "canceled": false
   }
 ]

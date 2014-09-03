@@ -24,7 +24,7 @@ var MODAL = (function ($) {
     };
 
     /**
-     * vertically center the modal
+     * get the distance to the top of the window if the modal was centered
      * @param {jQuery} $modal
      * @return {Number}
      */
@@ -36,12 +36,22 @@ var MODAL = (function ($) {
     };
 
     /**
+     * get the active modal
+     * @return {Object} modal instance
+     */
+    var getActiveModal = function () {
+        if (_active.length === 0) return null;
+        return _active[_active.length - 1];
+    };
+
+    /**
      * new Modal class
      */
     var _Modal = function ($el, id, options) {
 
         // assign the modal element
         this.$el = $el;
+        this.el = $el[0];
 
         // assign the modal id
         this.id = id;
@@ -56,6 +66,11 @@ var MODAL = (function ($) {
         // append the modal and overlay to the body
         this.$overlay.appendTo(document.body);
         this.$el.appendTo(document.body);
+
+        this.$el.attr({
+            'tabindex': '-1',
+            'role': 'dialog'
+        });
     };
 
     /**
@@ -172,7 +187,7 @@ var MODAL = (function ($) {
      */
     var _closeAll = function () {
         while (_active.length > 0) {
-            _active[_active.length - 1].close();
+            getActiveModal().close();
         }
     };
 
@@ -202,6 +217,27 @@ var MODAL = (function ($) {
         if (!_collection.hasOwnProperty(id)) return;
         _collection[id].verticallyCenter();
     };
+
+    // bind events
+    $(document).on('keydown', function (e) {
+        if (e.which !== 27) return;
+        var activeModal = getActiveModal();
+        if (!activeModal) return;
+        activeModal.close();
+    })/*.on('focus', '*', function (e) {
+        var activeModal = getActiveModal();
+        if (!activeModal || activeModal.el.contains(e.target)) return;
+        e.stopPropagation();
+        activeModal.el.focus();
+    });*/
+
+    document.addEventListener("focus", function(e) {
+        var activeModal = getActiveModal();
+        if (!activeModal || activeModal.el.contains(e.target)) return;
+        e.stopPropagation();
+        activeModal.el.focus();
+
+    }, true);
 
     return {
         'config': _config,
