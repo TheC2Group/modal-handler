@@ -2,6 +2,7 @@ modal-handler
 =============
 
 * Allow modals to be added anywhere on the page
+* Handle z-index for multiple modals
 * Trap the focus inside the modal
 * Restore the focus to the active element when modal is closed
 * Allow the `esc` key to close the active modal
