@@ -1,6 +1,6 @@
 /* Modal Handler
  * version: 2.0.0
- * https://github.com/cuth/modal-handler
+ * https://bitbucket.org/c2group/modal-handler
  */
 
 var MODAL = (function ($) {
