@@ -10,6 +10,7 @@ var MODAL = (function ($) {
     var _collection = {};
     var _index = 0;
     var _active = [];
+    var _restore = [];
 
     var _options = {
         zIndexStart: 1000
@@ -82,6 +83,7 @@ var MODAL = (function ($) {
 
         // add modal to the stack
         _active.push(this);
+        _restore.push(document.activeElement);
 
         var css = {
             'zIndex': _options.zIndexStart + _active.length
@@ -111,8 +113,10 @@ var MODAL = (function ($) {
 
         // remove modal from the stack
         var indexOf = _active.indexOf(this);
+        var restore;
         if (indexOf > -1) {
             _active.splice(indexOf, 1);
+            restore = _restore.splice(indexOf, 1)[0];
         }
 
         // deactivate overlay
@@ -120,6 +124,9 @@ var MODAL = (function ($) {
 
         // close modal
         this.$el.removeClass(this.opts.modalOpenClass);
+
+        // restore the focus to the previously active element
+        restore.focus();
     };
 
     /**
@@ -149,23 +156,26 @@ var MODAL = (function ($) {
 
     /**
      * MODAL.create()
+     * @param {jQuery} element or selector
+     * @param {Object} options
      * @return {Object} new modal instance
      */
     var _create = function (el, options) {
+        var id;
+
+        // early return of cached modal
+        if (typeof el === 'string') {
+            id = (el.indexOf('#') === 0) ? el.substr(1) : el;
+            if (_collection.hasOwnProperty(id)) {
+                return _collection[id];
+            }
+        }
 
         var $el = $(el);
         if (!$el.length) return;
 
         // determine the modal id
-        var id = $el[0].id || '_' + (++_index);
-
-        /*if (typeof el === 'string') {
-            id = (el.indexOf('#') === 0) ? el.substr(1) : el;
-        } else if (typeof el === ) {
-            id = el.id || '_' + (++_index);
-        } else if (el instanceOf $ && el.length > 0) {
-            id = el[0].id || '_' + (++_index);
-        }*/
+        id = $el[0].id || '_' + (++_index);
 
         // return the modal if it exists
         if (_collection.hasOwnProperty(id)) {
@@ -192,7 +202,7 @@ var MODAL = (function ($) {
     };
 
     /**
-     * MODAL.open(id)
+     * MODAL.open()
      * @param {String} id
      */
     var _open = function (id) {
@@ -201,7 +211,7 @@ var MODAL = (function ($) {
     };
 
     /**
-     * MODAL.close(id)
+     * MODAL.close()
      * @param {String} id
      */
     var _close = function (id) {
@@ -210,7 +220,7 @@ var MODAL = (function ($) {
     };
 
     /**
-     * MODAL.verticallyCenter(id)
+     * MODAL.verticallyCenter()
      * @param {String} id
      */
     var _verticallyCenter = function (id) {
@@ -218,26 +228,18 @@ var MODAL = (function ($) {
         _collection[id].verticallyCenter();
     };
 
-    // bind events
+    // bind events to trap the focus and close on 'esc'
     $(document).on('keydown', function (e) {
         if (e.which !== 27) return;
         var activeModal = getActiveModal();
         if (!activeModal) return;
         activeModal.close();
-    })/*.on('focus', '*', function (e) {
+    }).on('focus', '*', function (e) {
         var activeModal = getActiveModal();
         if (!activeModal || activeModal.el.contains(e.target)) return;
         e.stopPropagation();
         activeModal.el.focus();
-    });*/
-
-    document.addEventListener("focus", function(e) {
-        var activeModal = getActiveModal();
-        if (!activeModal || activeModal.el.contains(e.target)) return;
-        e.stopPropagation();
-        activeModal.el.focus();
-
-    }, true);
+    });
 
     return {
         'config': _config,
