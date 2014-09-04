@@ -204,6 +204,16 @@ var MODAL = (function ($) {
     };
 
     /**
+     * MODAL.closeActive()
+     */
+    var _closeActive = function () {
+        var active = getActiveModal();
+        if (active) {
+            active.close();
+        }
+    };
+
+    /**
      * MODAL.open()
      * @param {String} id
      */
@@ -248,6 +258,7 @@ var MODAL = (function ($) {
         'setDefaults': _setDefaults,
         'create': _create,
         'closeAll': _closeAll,
+        'closeActive': _closeActive,
         'open': _open,
         'close': _close,
         'verticallyCenter': _verticallyCenter

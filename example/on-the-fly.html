@@ -23,8 +23,35 @@
         <div id="Modal-secondModal" class="CustomModal Black">
             <p><a href="#CloseModal">Close just this modal</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tollenda est atque extrahenda radicitus. Itaque ab his ordiamur. Graece donan, Latine voluptatem vocant. Duo Reges: constructio interrete. Laboro autem non sine causa; </p>
         </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="lib/jquery-1.11.1.js"></script>
         <script src="../modal-handler.js"></script>
-        <script src="scripts/main.js"></script>
+        <script>
+
+MODAL.config({
+    'zIndexStart': 50
+});
+
+MODAL.setDefaults({
+    'modalOpenClass': 'isActive'
+});
+
+$(document).on('click', 'a[href^="#Modal-"]', function (e) {
+    e.preventDefault();
+    var modal = MODAL.create($(this).attr('href'));
+
+    // The setTimeout allows the CSS animation to run on the new element
+    setTimeout(function () {
+        modal.open();
+    }, 0);
+})
+.on('click', 'a[href="#CloseModal"]', function (e) {
+    e.preventDefault();
+    MODAL.close($(this).closest('.CustomModal')[0].id);
+})
+.on('click', '.Overlay', function () {
+    MODAL.closeAll();
+});
+
+        </script>
     </body>
 </html>

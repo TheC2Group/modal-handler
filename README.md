@@ -6,6 +6,7 @@ modal-handler
 * Trap the focus inside the modal
 * Restore the focus to the active element when modal is closed
 * Allow the `esc` key to close the active modal
+* Uses jQuery
 
 
 MODAL
@@ -24,6 +25,8 @@ _param_ {Object} options
 _return_ {Object} new modal instance
 
 ### MODAL.closeAll()
+
+### MODAL.closeActive()
 
 ### MODAL.open()
 _param_ {String} id
