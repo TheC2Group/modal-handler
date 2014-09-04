@@ -184,7 +184,6 @@ var MODAL = (function ($) {
             return _collection[id];
         }
 
-
         // create the modal
         var modal = new Modal($el, id, options);
 
