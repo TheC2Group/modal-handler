@@ -12,26 +12,26 @@ MODAL
 This is the global MODAL object. Don't use this to do individual modal tasks like open, close and verticallyCenter if you have access to the modal instance.
 
 ### MODAL.config()
-@param {Object} overwrite MODAL options
+_param_ {Object} overwrite MODAL options
 
 ### MODAL.setDefaults()
-@param {Object} overwrite modal defaults
+_param_ {Object} overwrite modal defaults
 
 ### MODAL.create()
-@param {jQuery} element or selector
-@param {Object} options
-@return {Object} new modal instance
+_param_ {jQuery} element or selector  
+_param_ {Object} options  
+_return_ {Object} new modal instance
 
 ### MODAL.closeAll()
 
 ### MODAL.open()
-@param {String} id
+_param_ {String} id
 
 ### MODAL.close()
-@param {String} id
+_param_ {String} id
 
 ### MODAL.verticallyCenter()
-@param {String} id
+_param_ {String} id
 
 
 modal
