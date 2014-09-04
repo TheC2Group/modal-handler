@@ -1,7 +1,9 @@
-/* Modal Handler
+/*!
+ * Modal Handler
  * version: 2.0.0
  * https://bitbucket.org/c2group/modal-handler
  */
+/*exported MODAL */
 
 var MODAL = (function ($) {
     'use strict';
@@ -21,7 +23,7 @@ var MODAL = (function ($) {
         overlayHTML: '<div class="Overlay"></div>',
         overlayActiveClass: 'isActive',
         modalOpenClass: 'isOpen',
-        verticallyCenterModal: true,
+        verticallyCenterModal: true
     };
 
     /**
@@ -48,7 +50,7 @@ var MODAL = (function ($) {
     /**
      * new Modal class
      */
-    var _Modal = function ($el, id, options) {
+    var Modal = function ($el, id, options) {
 
         // assign the modal element
         this.$el = $el;
@@ -77,7 +79,7 @@ var MODAL = (function ($) {
     /**
      * modal.open()
      */
-    _Modal.prototype.open = function () {
+    Modal.prototype.open = function () {
         if (this.isOpen) return;
         this.isOpen = true;
 
@@ -107,7 +109,7 @@ var MODAL = (function ($) {
     /**
      * modal.close()
      */
-    _Modal.prototype.close = function () {
+    Modal.prototype.close = function () {
         if (!this.isOpen) return;
         this.isOpen = false;
 
@@ -132,7 +134,7 @@ var MODAL = (function ($) {
     /**
      * modal.verticallyCenter()
      */
-    _Modal.prototype.verticallyCenter = function () {
+    Modal.prototype.verticallyCenter = function () {
         this.$el.css({
             top: getModalTop(this.$el)
         });
@@ -184,7 +186,7 @@ var MODAL = (function ($) {
 
 
         // create the modal
-        var modal = new _Modal($el, id, options);
+        var modal = new Modal($el, id, options);
 
         // add the modal to the collection
         _collection[id] = modal;

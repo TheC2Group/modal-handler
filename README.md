@@ -43,6 +43,27 @@ This is the modal instance created from MODAL.create().
 ### modal.verticallyCenter()
 
 
+MODAL options
+-------------
+```js
+{
+    zIndexStart: 1000
+}
+```
+
+
+modal defaults
+--------------
+```js
+{
+    overlayHTML: '<div class="Overlay"></div>',
+    overlayActiveClass: 'isActive',
+    modalOpenClass: 'isOpen',
+    verticallyCenterModal: true
+}
+```
+
+
 a11y notes
 ----------
 [Making an accessible dialog box](http://www.nczonline.net/blog/2013/02/12/making-an-accessible-dialog-box/)
