@@ -1,6 +1,6 @@
 /*!
  * Modal Handler
- * version: 2.0.0
+ * version: 2.1.0
  * https://bitbucket.org/c2group/modal-handler
  */
 /*exported MODAL */
