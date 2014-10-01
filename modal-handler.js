@@ -63,12 +63,15 @@ var MODAL = (function ($) {
 
         this.isOpen = false;
 
+    if (this.opts.overlayHTML) {
         // create overlay
         this.$overlay = $(this.opts.overlayHTML);
 
         // append the modal and overlay to the body
         this.$overlay.appendTo(document.body);
-        this.$el.appendTo(document.body);
+    }
+
+    this.$el.appendTo(document.body);
 
         this.$el.attr({
             'tabindex': '-1',
@@ -91,10 +94,12 @@ var MODAL = (function ($) {
             'zIndex': _options.zIndexStart + _active.length
         };
 
+    if (this.opts.overlayHTML) {
         // activate overlay
         this.$overlay
             .css(css)
             .addClass(this.opts.overlayActiveClass);
+    }
 
         if (this.opts.verticallyCenterModal) {
             css.top = getModalTop(this.$el);
@@ -121,8 +126,10 @@ var MODAL = (function ($) {
             restore = _restore.splice(indexOf, 1)[0];
         }
 
+    if (this.opts.overlayHTML) {
         // deactivate overlay
         this.$overlay.removeClass(this.opts.overlayActiveClass);
+    }
 
         // close modal
         this.$el.removeClass(this.opts.modalOpenClass);
