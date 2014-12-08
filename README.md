@@ -20,8 +20,8 @@ _param_ {Object} overwrite MODAL options
 _param_ {Object} overwrite modal defaults
 
 ### MODAL.create()
-_param_ {jQuery} element or selector  
-_param_ {Object} options  
+_param_ {jQuery} element or selector
+_param_ {Object} options
 _return_ {Object} new modal instance
 
 ### MODAL.closeAll()
@@ -51,7 +51,8 @@ MODAL options
 -------------
 ```js
 {
-    zIndexStart: 1000
+    zIndexStart: 1000,
+    appendTo: (document.forms.length > 0 && document.forms[0].parentElement === document.body) ? document.forms[0] : document.body // Try to detect .NET webforms and append to the .NET form
 }
 ```
 

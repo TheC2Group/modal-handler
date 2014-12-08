@@ -1,6 +1,6 @@
 /*!
  * Modal Handler
- * version: 2.1.0
+ * version: 2.2.0
  * https://bitbucket.org/c2group/modal-handler
  */
 /*exported MODAL */
@@ -15,7 +15,8 @@ var MODAL = (function ($) {
     var _restore = [];
 
     var _options = {
-        zIndexStart: 1000
+        zIndexStart: 1000,
+        appendTo: (document.forms.length > 0 && document.forms[0].parentElement === document.body) ? document.forms[0] : document.body // Try to detect .NET webforms and append to the .NET form
     };
 
     // default options for a modal instance
@@ -68,10 +69,10 @@ var MODAL = (function ($) {
         this.$overlay = $(this.opts.overlayHTML);
 
         // append the modal and overlay to the body
-        this.$overlay.appendTo(document.body);
+        this.$overlay.appendTo(_options.appendTo);
     }
 
-    this.$el.appendTo(document.body);
+    this.$el.appendTo(_options.appendTo);
 
         this.$el.attr({
             'tabindex': '-1',
