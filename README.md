@@ -11,6 +11,7 @@ modal-handler
 
 MODAL
 -----
+
 This is the global MODAL object. Don't use this to do individual modal tasks like open, close and verticallyCenter if you have access to the modal instance.
 
 ### MODAL.config()
@@ -23,6 +24,13 @@ _param_ {Object} overwrite modal defaults
 _param_ {jQuery} element or selector
 _param_ {Object} options
 _return_ {Object} new modal instance
+
+```js
+// example
+var modal = MODAL.create('#Modal', {
+    modalOpenClass: 'isActive'
+});
+```
 
 ### MODAL.closeAll()
 
@@ -40,6 +48,7 @@ _param_ {String} id
 
 modal
 -----
+
 This is the modal instance created from MODAL.create().
 
 ### modal.open()
@@ -49,6 +58,7 @@ This is the modal instance created from MODAL.create().
 
 MODAL options
 -------------
+
 ```js
 {
     zIndexStart: 1000,
@@ -59,6 +69,7 @@ MODAL options
 
 modal defaults
 --------------
+
 ```js
 {
     overlayHTML: '<div class="Overlay"></div>',
@@ -71,4 +82,5 @@ modal defaults
 
 a11y notes
 ----------
+
 [Making an accessible dialog box](http://www.nczonline.net/blog/2013/02/12/making-an-accessible-dialog-box/)
