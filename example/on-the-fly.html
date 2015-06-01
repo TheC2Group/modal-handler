@@ -39,10 +39,10 @@ $(document).on('click', 'a[href^="#Modal-"]', function (e) {
     e.preventDefault();
     var modal = MODAL.create($(this).attr('href'));
 
-    // The setTimeout allows the CSS animation to run on the new element
-    setTimeout(function () {
-        modal.open();
-    }, 0);
+    // cause a repaint
+    modal.el.getBoundingClientRect();
+
+    modal.open();
 })
 .on('click', 'a[href="#CloseModal"]', function (e) {
     e.preventDefault();

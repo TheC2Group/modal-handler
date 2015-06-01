@@ -1,6 +1,6 @@
 /*!
  * Modal Handler
- * version: 2.2.0
+ * version: 2.2.1
  * https://bitbucket.org/c2group/modal-handler
  */
 /*exported MODAL */
@@ -253,7 +253,7 @@ var MODAL = (function ($) {
         var activeModal = getActiveModal();
         if (!activeModal) return;
         activeModal.close();
-    }).on('focus', '*', function (e) {
+    }).on('focus', 'body', function (e) {
         var activeModal = getActiveModal();
         if (!activeModal || activeModal.el.contains(e.target)) return;
         e.stopPropagation();
