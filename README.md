@@ -111,3 +111,8 @@ browserify modal-handler.js --outfile standalone/modal-handler.js --standalone M
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="standalone/modal-handler.js"></script>
 ```
+
+License
+-------
+
+MIT - Copyright (c) 2015 The C2 Group
