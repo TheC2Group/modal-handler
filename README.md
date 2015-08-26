@@ -6,13 +6,15 @@ modal-handler
 * Trap the focus inside the modal
 * Restore the focus to the active element when modal is closed
 * Allow the `esc` key to close the active modal
-* Uses jQuery
+* CommonJS module
 
 
 MODAL
 -----
 
-This is the global MODAL object. Don't use this to do individual modal tasks like open, close and verticallyCenter if you have access to the modal instance.  
+```js
+var MODAL = require('modal-handler');
+``` 
 
 ### MODAL.config()
 _param_ {Object} overwrite MODAL options  
@@ -49,7 +51,9 @@ _param_ {String} id
 modal
 -----
 
-This is the modal instance created from MODAL.create().  
+```js
+var modal = MODAL.create('#Modal');
+```
 
 ### modal.open()
 ### modal.close()
@@ -72,9 +76,10 @@ modal defaults
 
 ```js
 {
-    overlayHTML: '<div class="Overlay"></div>',
-    overlayActiveClass: 'isActive',
-    modalOpenClass: 'isOpen',
+    overlayHTML: '<div class="Overlay" data-state="off"></div>',
+    attr: 'data-state',
+    onState: 'on',
+    offState: 'off',
     verticallyCenterModal: true
 }
 ```
@@ -84,3 +89,25 @@ a11y notes
 ----------
 
 [Making an accessible dialog box](http://www.nczonline.net/blog/2013/02/12/making-an-accessible-dialog-box/)  
+
+
+install
+-------
+
+```
+npm install modal-handler
+```
+
+standalone
+----------
+
+Build a standalone file
+
+```
+browserify modal-handler.js --outfile standalone/modal-handler.js --standalone MODAL --exclude jquery
+```
+
+```html
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="standalone/modal-handler.js"></script>
+```

@@ -1,0 +1,25 @@
+{
+  "name": "modal-handler",
+  "version": "3.0.0",
+  "description": "Add accessible modals to a web page.",
+  "main": "modal-handler.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@stash.c2mpg.com:7999/c2/modal-handler.git"
+  },
+  "keywords": [
+    "modal"
+  ],
+  "author": "The C2 Group",
+  "license": "MIT",
+  "dependencies": {
+    "c2-event-handler": "^2.3.0",
+    "jquery": "^2.1.4"
+  }
+}
