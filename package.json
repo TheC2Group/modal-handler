@@ -6,9 +6,6 @@
   "directories": {
     "example": "example"
   },
-  "scripts": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:TheC2Group/modal-handler.git"
