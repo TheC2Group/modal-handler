@@ -6,6 +6,10 @@
   "directories": {
     "example": "example"
   },
+  "scripts": {
+    "standalone": "browserify modal-handler.js --outfile standalone/modal-handler.js --standalone MODAL --exclude jquery",
+    "dist": "uglifyjs standalone/modal-handler.js --output standalone/modal-handler.min.js --comments"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:TheC2Group/modal-handler.git"
@@ -16,7 +20,7 @@
   "author": "The C2 Group",
   "license": "MIT",
   "dependencies": {
-    "c2-event-handler": "^2.3.0",
+    "c2-event-handler": "^2.3.1",
     "jquery": "^2.1.4"
   }
 }

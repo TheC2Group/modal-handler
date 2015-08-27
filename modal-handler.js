@@ -1,7 +1,8 @@
 /*!
  * Modal Handler
- * version: 3.0.0
  * https://github.com/TheC2Group/modal-handler
+ * @version 3.0.0
+ * @license MIT (c) The C2 Group (c2experience.com)
  */
 
 'use strict';
