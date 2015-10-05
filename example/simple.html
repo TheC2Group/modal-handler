@@ -37,9 +37,7 @@ MODAL.on('close', function (modal) {
     console.log(modal);
 });
 
-var modal = MODAL.create('#Modal', {
-    'modalOpenClass': 'isActive'
-});
+var modal = MODAL.create('#Modal');
 
 modal.on('open', function () {
     console.log('open');

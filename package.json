@@ -7,6 +7,7 @@
     "example": "example"
   },
   "scripts": {
+    "test": "wdio",
     "standalone": "browserify modal-handler.js --outfile standalone/modal-handler.js --standalone MODAL --exclude jquery",
     "dist": "uglifyjs standalone/modal-handler.js --output standalone/modal-handler.min.js --comments"
   },
@@ -22,5 +23,9 @@
   "dependencies": {
     "c2-event-handler": "^2.3.1",
     "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "webdriverio": "^3.2.4"
   }
 }

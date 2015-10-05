@@ -9,12 +9,29 @@ modal-handler
 * CommonJS module
 
 
-MODAL
------
+Get Started
+-----------
+
+### CommonJS
+
+```shell
+$ npm install modal-handler
+```
 
 ```js
 var MODAL = require('modal-handler');
-``` 
+```
+
+### Browser Global
+
+```html
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="standalone/modal-handler.js"></script>
+```
+
+
+MODAL
+-----
 
 ### MODAL.config()
 _param_ {Object} overwrite MODAL options  
@@ -90,27 +107,6 @@ a11y notes
 
 [Making an accessible dialog box](http://www.nczonline.net/blog/2013/02/12/making-an-accessible-dialog-box/)  
 
-
-install
--------
-
-```
-npm install modal-handler
-```
-
-standalone
-----------
-
-Build a standalone file
-
-```
-browserify modal-handler.js --outfile standalone/modal-handler.js --standalone MODAL --exclude jquery
-```
-
-```html
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="standalone/modal-handler.js"></script>
-```
 
 License
 -------
