@@ -1,3 +1,12 @@
+/*
+    npm i -g selenium-standalone
+    npm i -g http-server
+
+    selenium-standalone start
+    http-server
+    mocha
+*/
+
 var assert = require('assert');
 
 describe('Modal Handler', function() {
