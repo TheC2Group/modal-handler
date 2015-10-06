@@ -57,16 +57,23 @@ describe('Modal Handler', function() {
             .call(done);
     });
 
-    it('should open two modals', function(done) {
+    it('should open two modals then close the top one', function(done) {
         browser
             .url('/example/on-the-fly.html')
             .click('=Open Modal')
             .waitForVisible('=Internal Modal')
-            .then()
             .click('=Internal Modal')
             .waitForVisible('#Modal-secondModal')
-            .then()
             .getAttribute('#Modal-secondModal', 'data-state')
+            .then(function (val) {
+                assert(val === 'on');
+            })
+            .click('=Close just this modal')
+            .getAttribute('#Modal-secondModal', 'data-state')
+            .then(function (val) {
+                assert(val === 'off');
+            })
+            .getAttribute('#Modal-firstModal', 'data-state')
             .then(function (val) {
                 assert(val === 'on');
             })
