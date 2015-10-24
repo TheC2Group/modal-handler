@@ -8,8 +8,10 @@
   },
   "scripts": {
     "test": "wdio",
-    "standalone": "browserify modal-handler.js --outfile standalone/modal-handler.js --standalone MODAL --exclude jquery",
-    "dist": "uglifyjs standalone/modal-handler.js --output standalone/modal-handler.min.js --comments"
+    "bundle-example": "browserify example/js/simple.js -o example/bundle/simple.js && browserify example/js/on-the-fly.js -o example/bundle/on-the-fly.js",
+    "standalone": "browserify -t literalify modal-handler.js --outfile standalone/modal-handler.js --standalone MODAL",
+    "dist": "uglifyjs standalone/modal-handler.js --output standalone/modal-handler.min.js --comments",
+    "build": "npm run standalone && npm run dist"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,13 @@
     "jquery": "^2.1.4"
   },
   "devDependencies": {
+    "browserify": "^11.2.0",
+    "literalify": "^0.4.0",
     "mocha": "^2.3.3",
     "webdriverio": "^3.2.4"
+  },
+  "literalify": {
+    "jquery": "window.jQuery",
+    "c2-event-handler": "window.eventHandler"
   }
 }

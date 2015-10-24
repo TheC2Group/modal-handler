@@ -25,42 +25,6 @@
 
             <p>Atqui reperies, inquit, in hoc quidem pertinacem; Duo Reges: constructio interrete. Itaque haec cum illis est dissensio, cum Peripateticis nulla sane. </p>
         </div>
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="../standalone/modal-handler.min.js"></script>
-        <script>
-
-MODAL.on('open', function (modal) {
-    console.log(modal);
-});
-
-MODAL.on('close', function (modal) {
-    console.log(modal);
-});
-
-var modal = MODAL.create('#Modal');
-
-modal.on('open', function () {
-    console.log('open');
-});
-
-modal.on('close', function () {
-    console.log('close');
-});
-
-modal.$el.on('click', '.Close', function (e) {
-    e.preventDefault();
-    modal.close();
-});
-
-$('#Trigger').on('click', function (e) {
-    e.preventDefault();
-    modal.open();
-});
-
-$(document).on('click', '.Overlay', function () {
-    MODAL.closeActive();
-});
-
-        </script>
+        <script src="./bundle/simple.js"></script>
     </body>
 </html>

@@ -7,7 +7,7 @@
 
 'use strict';
 
-var $ = jQuery || require('jquery');
+var $ = require('jquery');
 var eventHandler = require('c2-event-handler');
 
 var handler = eventHandler({});

@@ -24,34 +24,6 @@
             <p><a href="#CloseModal">Close just this modal</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tollenda est atque extrahenda radicitus. Itaque ab his ordiamur. Graece donan, Latine voluptatem vocant. Duo Reges: constructio interrete. Laboro autem non sine causa; </p>
         </div>
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="../standalone/modal-handler.min.js"></script>
-        <script>
-
-MODAL.config({
-    'zIndexStart': 50
-});
-
-MODAL.setDefaults({
-    'modalOpenClass': 'isActive'
-});
-
-$(document).on('click', 'a[href^="#Modal-"]', function (e) {
-    e.preventDefault();
-    var modal = MODAL.create($(this).attr('href'));
-
-    // cause a repaint
-    modal.el.getBoundingClientRect();
-
-    modal.open();
-})
-.on('click', 'a[href="#CloseModal"]', function (e) {
-    e.preventDefault();
-    MODAL.close($(this).closest('.CustomModal')[0].id);
-})
-.on('click', '.Overlay', function () {
-    MODAL.closeAll();
-});
-
-        </script>
+        <script src="./bundle/on-the-fly.js"></script>
     </body>
 </html>

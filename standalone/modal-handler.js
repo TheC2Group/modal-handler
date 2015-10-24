@@ -1,120 +1,5 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.MODAL = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*!
- * Event Handler - create event emitters
- * https://github.com/TheC2Group/event-handler
- * @version 2.3.1
- * @license MIT (c) The C2 Group (c2experience.com)
- */
-
-var eventHandler = (function () {
-    'use strict';
-
-    var on = function (event, fn) {
-        if (typeof event !== 'string' || !event.length || typeof fn === 'undefined') return;
-
-        if (event.indexOf(' ') > -1) {
-            event.split(' ').forEach(function (eventName) {
-                on.call(this, eventName, fn);
-            }, this);
-            return;
-        }
-
-        this._events = this._events || {};
-        this._events[event] = this._events[event] || [];
-        this._events[event].push(fn);
-    };
-
-    var off = function (event, fn) {
-        if (typeof event !== 'string' || !event.length) return;
-
-        if (event.indexOf(' ') > -1) {
-            event.split(' ').forEach(function (eventName) {
-                off.call(this, eventName, fn);
-            }, this);
-            return;
-        }
-
-        this._events = this._events || {};
-
-        if (event in this._events === false) return;
-
-        if (typeof fn === 'undefined') {
-            delete this._events[event];
-            return;
-        }
-
-        var index = this._events[event].indexOf(fn);
-        if (index > -1) {
-            if (this._events[event].length === 1) {
-                delete this._events[event];
-            } else {
-                this._events[event].splice(index, 1);
-            }
-        }
-    };
-
-    var emit = function (event /* , args... */) {
-        var args = Array.prototype.slice.call(arguments, 1);
-
-        var lastIndex = event.lastIndexOf(':');
-        if (lastIndex > -1) {
-            emit.call(this, event.substring(0, lastIndex), args);
-        }
-
-        this._events = this._events || {};
-
-        if (event in this._events === false) return;
-
-        this._events[event].forEach(function (fn) {
-            fn.apply(this, args);
-        }, this);
-    };
-
-    var EventConstructor = function () {};
-
-    var proto = EventConstructor.prototype;
-    proto.on = on;
-    proto.off = off;
-    proto.emit = emit;
-
-    // legacy extensions
-    proto.bind = on;
-    proto.unbind = off;
-    proto.trigger = emit;
-
-    var handler = function (_class) {
-
-        // constructor
-        if (arguments.length === 0) {
-            return new EventConstructor();
-        }
-
-        // mixin
-        if (typeof _class === 'function') {
-            _class.prototype.on = on;
-            _class.prototype.off = off;
-            _class.prototype.emit = emit;
-        }
-
-        if (typeof _class === 'object') {
-            _class.on = on;
-            _class.off = off;
-            _class.emit = emit;
-        }
-
-        return _class;
-    };
-
-    return handler;
-}());
-
-// export commonjs
-if (typeof module !== 'undefined' && ('exports' in module)) {
-    module.exports = eventHandler;
-}
-
-},{}],2:[function(require,module,exports){
-/*!
  * Modal Handler
  * https://github.com/TheC2Group/modal-handler
  * @version 3.0.0
@@ -123,8 +8,8 @@ if (typeof module !== 'undefined' && ('exports' in module)) {
 
 'use strict';
 
-var $ = jQuery || require('jquery');
-var eventHandler = require('c2-event-handler');
+var $ = window.jQuery;
+var eventHandler = window.eventHandler;
 
 var handler = eventHandler({});
 
@@ -400,5 +285,5 @@ module.exports = $.extend(handler, {
     verticallyCenter: _verticallyCenter
 });
 
-},{"c2-event-handler":1,"jquery":undefined}]},{},[2])(2)
+},{}]},{},[1])(1)
 });
