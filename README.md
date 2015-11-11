@@ -47,7 +47,7 @@ _return_ {Object} new modal instance
 ```js
 // example
 var modal = MODAL.create('#Modal', {
-    modalOpenClass: 'isActive'
+    verticallyCenterModal: false
 });
 ```
 
