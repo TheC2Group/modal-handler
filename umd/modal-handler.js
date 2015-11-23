@@ -1,7 +1,7 @@
 /*!
  * modal-handler
  * https://github.com/TheC2Group/modal-handler
- * @version 3.0.1
+ * @version 3.1.0
  * @license MIT (c) The C2 Group (c2experience.com)
  */
 (function (global, factory) {
