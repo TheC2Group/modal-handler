@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var MODAL = require('../../modal-handler.js');
+var MODAL = require('../../cjs/modal-handler.js');
 
 MODAL.config({
     'zIndexStart': 50

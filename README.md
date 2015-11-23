@@ -26,7 +26,8 @@ var MODAL = require('modal-handler');
 
 ```html
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="standalone/modal-handler.js"></script>
+<script src="TheC2Group/event-handler.js"></script>
+<script src="iife/modal-handler.js"></script>
 ```
 
 

@@ -1,15 +1,7 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.MODAL = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/*!
- * Modal Handler
- * https://github.com/TheC2Group/modal-handler
- * @version 3.0.1
- * @license MIT (c) The C2 Group (c2experience.com)
- */
-
 'use strict';
 
-var $ = window.jQuery;
-var eventHandler = window.eventHandler;
+var $ = require('jquery');
+var eventHandler = require('c2-event-handler');
 
 var handler = eventHandler({});
 
@@ -21,7 +13,7 @@ var _restore = [];
 
 var _options = {
     zIndexStart: 1000,
-    appendTo: (document.forms.length > 0 && document.forms[0].parentElement === document.body) ? document.forms[0] : document.body // Try to detect .NET webforms and append to the .NET form
+    appendTo: document.forms.length > 0 && document.forms[0].parentElement === document.body ? document.forms[0] : document.body // Try to detect .NET webforms and append to the .NET form
 };
 
 // default options for a modal instance
@@ -105,9 +97,7 @@ Modal.prototype.open = function () {
 
     if (this.opts.overlayHTML) {
         // activate overlay
-        this.$overlay
-            .css(css)
-            .attr(this.opts.attr, this.opts.onState);
+        this.$overlay.css(css).attr(this.opts.attr, this.opts.onState);
     }
 
     if (this.opts.verticallyCenterModal) {
@@ -115,9 +105,7 @@ Modal.prototype.open = function () {
     }
 
     // open modal
-    this.$el
-        .css(css)
-        .attr(this.opts.attr, this.opts.onState);
+    this.$el.css(css).attr(this.opts.attr, this.opts.onState);
 
     this.emit('open');
     handler.emit('open', this);
@@ -189,7 +177,7 @@ var _create = function (el, options) {
 
     // early return of cached modal
     if (typeof el === 'string') {
-        id = (el.indexOf('#') === 0) ? el.substr(1) : el;
+        id = el.indexOf('#') === 0 ? el.substr(1) : el;
         if (_collection.hasOwnProperty(id)) {
             return _collection[id];
         }
@@ -199,7 +187,7 @@ var _create = function (el, options) {
     if (!$el.length) return;
 
     // determine the modal id
-    id = $el[0].id || '_' + (++_index);
+    id = $el[0].id || '_' + ++_index;
 
     // return the modal if it exists
     if (_collection.hasOwnProperty(id)) {
@@ -274,7 +262,7 @@ $(document).on('keydown', function (e) {
     activeModal.el.focus();
 });
 
-module.exports = $.extend(handler, {
+var modalHandler = $.extend(handler, {
     config: _config,
     setDefaults: _setDefaults,
     create: _create,
@@ -285,5 +273,4 @@ module.exports = $.extend(handler, {
     verticallyCenter: _verticallyCenter
 });
 
-},{}]},{},[1])(1)
-});
+module.exports = modalHandler;

@@ -1,47 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var $ = require('jquery');
-var MODAL = require('../../modal-handler.js');
-
-MODAL.on('open', function (modal) {
-    console.log(modal);
-});
-
-MODAL.on('close', function (modal) {
-    console.log(modal);
-});
-
-var modal = MODAL.create('#Modal');
-
-modal.on('open', function () {
-    console.log('open');
-});
-
-modal.on('close', function () {
-    console.log('close');
-});
-
-modal.$el.on('click', '.Close', function (e) {
-    e.preventDefault();
-    modal.close();
-});
-
-$('#Trigger').on('click', function (e) {
-    e.preventDefault();
-    modal.open();
-});
-
-$(document).on('click', '.Overlay', function () {
-    MODAL.closeActive();
-});
-
-},{"../../modal-handler.js":2,"jquery":4}],2:[function(require,module,exports){
-/*!
- * Modal Handler
- * https://github.com/TheC2Group/modal-handler
- * @version 3.0.0
- * @license MIT (c) The C2 Group (c2experience.com)
- */
-
 'use strict';
 
 var $ = require('jquery');
@@ -57,7 +14,7 @@ var _restore = [];
 
 var _options = {
     zIndexStart: 1000,
-    appendTo: (document.forms.length > 0 && document.forms[0].parentElement === document.body) ? document.forms[0] : document.body // Try to detect .NET webforms and append to the .NET form
+    appendTo: document.forms.length > 0 && document.forms[0].parentElement === document.body ? document.forms[0] : document.body // Try to detect .NET webforms and append to the .NET form
 };
 
 // default options for a modal instance
@@ -141,9 +98,7 @@ Modal.prototype.open = function () {
 
     if (this.opts.overlayHTML) {
         // activate overlay
-        this.$overlay
-            .css(css)
-            .attr(this.opts.attr, this.opts.onState);
+        this.$overlay.css(css).attr(this.opts.attr, this.opts.onState);
     }
 
     if (this.opts.verticallyCenterModal) {
@@ -151,9 +106,7 @@ Modal.prototype.open = function () {
     }
 
     // open modal
-    this.$el
-        .css(css)
-        .attr(this.opts.attr, this.opts.onState);
+    this.$el.css(css).attr(this.opts.attr, this.opts.onState);
 
     this.emit('open');
     handler.emit('open', this);
@@ -225,7 +178,7 @@ var _create = function (el, options) {
 
     // early return of cached modal
     if (typeof el === 'string') {
-        id = (el.indexOf('#') === 0) ? el.substr(1) : el;
+        id = el.indexOf('#') === 0 ? el.substr(1) : el;
         if (_collection.hasOwnProperty(id)) {
             return _collection[id];
         }
@@ -235,7 +188,7 @@ var _create = function (el, options) {
     if (!$el.length) return;
 
     // determine the modal id
-    id = $el[0].id || '_' + (++_index);
+    id = $el[0].id || '_' + ++_index;
 
     // return the modal if it exists
     if (_collection.hasOwnProperty(id)) {
@@ -310,7 +263,7 @@ $(document).on('keydown', function (e) {
     activeModal.el.focus();
 });
 
-module.exports = $.extend(handler, {
+var modalHandler = $.extend(handler, {
     config: _config,
     setDefaults: _setDefaults,
     create: _create,
@@ -321,11 +274,48 @@ module.exports = $.extend(handler, {
     verticallyCenter: _verticallyCenter
 });
 
-},{"c2-event-handler":3,"jquery":4}],3:[function(require,module,exports){
+module.exports = modalHandler;
+},{"c2-event-handler":3,"jquery":4}],2:[function(require,module,exports){
+var $ = require('jquery');
+var MODAL = require('../../cjs/modal-handler.js');
+
+MODAL.on('open', function (modal) {
+    console.log(modal);
+});
+
+MODAL.on('close', function (modal) {
+    console.log(modal);
+});
+
+var modal = MODAL.create('#Modal');
+
+modal.on('open', function () {
+    console.log('open');
+});
+
+modal.on('close', function () {
+    console.log('close');
+});
+
+modal.$el.on('click', '.Close', function (e) {
+    e.preventDefault();
+    modal.close();
+});
+
+$('#Trigger').on('click', function (e) {
+    e.preventDefault();
+    modal.open();
+});
+
+$(document).on('click', '.Overlay', function () {
+    MODAL.closeActive();
+});
+
+},{"../../cjs/modal-handler.js":1,"jquery":4}],3:[function(require,module,exports){
 /*!
  * Event Handler - create event emitters
  * https://github.com/TheC2Group/event-handler
- * @version 2.3.1
+ * @version 2.3.2
  * @license MIT (c) The C2 Group (c2experience.com)
  */
 
@@ -381,7 +371,7 @@ var eventHandler = (function () {
 
         var lastIndex = event.lastIndexOf(':');
         if (lastIndex > -1) {
-            emit.call(this, event.substring(0, lastIndex), args);
+            emit.apply(this, [event.substring(0, lastIndex)].concat(args));
         }
 
         this._events = this._events || {};
@@ -9648,4 +9638,4 @@ return jQuery;
 
 }));
 
-},{}]},{},[1]);
+},{}]},{},[2]);

@@ -1,17 +1,20 @@
 {
   "name": "modal-handler",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Add accessible modals to a web page.",
-  "main": "modal-handler.js",
+  "jsnext:main": "modal-handler.js",
+  "main": "cjs/modal-handler.js",
+  "export": "MODAL",
   "directories": {
     "example": "example"
   },
   "scripts": {
     "test": "wdio",
-    "bundle-example": "browserify example/js/simple.js -o example/bundle/simple.js && browserify example/js/on-the-fly.js -o example/bundle/on-the-fly.js",
-    "standalone": "browserify -t literalify modal-handler.js --outfile standalone/modal-handler.js --standalone MODAL",
-    "dist": "uglifyjs standalone/modal-handler.js --output standalone/modal-handler.min.js --comments",
-    "build": "npm run standalone && npm run dist"
+    "iife": "rollup -c rollup-iife.config.js",
+    "cjs": "rollup -c rollup-cjs.config.js",
+    "umd": "rollup -c rollup-umd.config.js",
+    "build": "npm run iife && npm run cjs && npm run umd",
+    "bundle-example": "browserify example/js/simple.js -o example/bundle/simple.js && browserify example/js/on-the-fly.js -o example/bundle/on-the-fly.js"
   },
   "repository": {
     "type": "git",
@@ -22,18 +25,21 @@
   ],
   "author": "The C2 Group",
   "license": "MIT",
+  "copyright": "(c) The C2 Group (c2experience.com)",
+  "bugs": {
+    "url": "https://github.com/TheC2Group/modal-handler/issues"
+  },
+  "homepage": "https://github.com/TheC2Group/modal-handler",
   "dependencies": {
     "c2-event-handler": "^2.3.1",
     "jquery": "^2.1.4"
   },
   "devDependencies": {
     "browserify": "^11.2.0",
-    "literalify": "^0.4.0",
+    "babel-preset-es2015-rollup": "^1.0.0",
+    "rollup": "^0.21.0",
+    "rollup-plugin-babel": "^2.1.0",
     "mocha": "^2.3.3",
     "webdriverio": "^3.2.4"
-  },
-  "literalify": {
-    "jquery": "window.jQuery",
-    "c2-event-handler": "window.eventHandler"
   }
 }
