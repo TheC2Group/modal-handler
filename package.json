@@ -1,6 +1,6 @@
 {
   "name": "modal-handler",
-  "version": "3.1.0",
+  "version": "2.4.3",
   "description": "Add accessible modals to a web page.",
   "jsnext:main": "modal-handler.js",
   "main": "cjs/modal-handler.js",
