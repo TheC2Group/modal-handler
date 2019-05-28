@@ -1,7 +1,7 @@
 /*!
  * modal-handler
  * https://github.com/TheC2Group/modal-handler
- * @version 3.2.3
+ * @version 3.2.4
  * @license MIT (c) The C2 Group (c2experience.com)
  */
 var MODAL = (function () {
