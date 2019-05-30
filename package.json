@@ -1,6 +1,6 @@
 {
   "name": "modal-handler",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "description": "Add accessible modals to a web page.",
   "jsnext:main": "modal-handler.js",
   "main": "cjs/modal-handler.js",
@@ -9,10 +9,7 @@
     "example": "example"
   },
   "scripts": {
-    "iife": "rollup -c rollup-iife.config.js",
-    "cjs": "rollup -c rollup-cjs.config.js",
-    "umd": "rollup -c rollup-umd.config.js",
-    "build": "npm run iife && npm run cjs && npm run umd",
+    "build": "rollup -c rollup.config.js",
     "bundle-example": "browserify example/js/simple.js -o example/bundle/simple.js && browserify example/js/on-the-fly.js -o example/bundle/on-the-fly.js"
   },
   "repository": {
